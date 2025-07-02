@@ -1,8 +1,9 @@
+import { Navigate } from "react-router-dom";
+
 const Page404 = () => {
     return (
-        <div>
-            <h1>Page 404</h1>
-        </div>
+        // Redirige vers la page d'accueil
+        <Navigate to="/" replace />
     );
 }
 export default Page404;
