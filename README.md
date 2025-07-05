@@ -34,8 +34,9 @@ http://localhost:5173/
 ## Fonctionnalités
 
 - Recherche de produits par **nom**, **marque**, **pays** ou **mot-clé**
-- Affichage limité aux **50 premiers résultats complets** (avec image, nom et origine renseignés)
+- Affichage limité aux **50 premiers résultats complets** (avec image, nom et marque renseignés)
 - Présentation des résultats sous forme de cartes avec **nom**, **image**, **marque**, **origine**, **quantité**
+- Bouton de réinitialisation pour effacer la recherche et les résultats
 - Clic sur une carte pour accéder à la **page de détails** du produit
 - Affichage des détails : **image**, **marque**, **ingrédients**, **informations nutritionnelles**, **quantité**, **code-barres**, **origine**, **lieu de vente**, **écoscore**, **nutriscore**
 - Gestion des erreurs côté client : champ vide, erreur réseau, produit introuvable etc.

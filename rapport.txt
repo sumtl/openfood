@@ -1,0 +1,108 @@
+﻿Open Food Facts - Projet React
+Auteur: Wansu Wang
+Date : 2025-07-04  
+GitHub du projet : https://github.com/sumtl/openfood
+
+Ce projet React intègre l’API Open Food Facts pour :
+
+- Rechercher des produits alimentaires (avec filtrage des résultats incomplets)
+- Afficher les détails des produits (marque, ingrédients, nutriscore, etc.)
+- Gérer les erreurs client (réseau, paramètres invalides, réponses vides)
+
+Détails du projet :
+
+===========================================
+1. API choisie
+===========================================
+Open Food Facts: https://wiki.openfoodfacts.org/API
+
+
+===========================================
+2. Endpoints utilisés
+===========================================
+
+2.1 /cgi/search.pl : pour rechercher des produits selon un terme en texte intégral (nom, marque, pays, etc.). Choisi car /api/v*/search n’est pas encore disponible officiellement
+
+2.2 /api/v1/product/:code : pour récupérer les détails complets d’un produit lorsqu’on connaît déjà le code produit
+
+Note : La version 2 ne permet pas encore de recherche en texte intégral. C’est pourquoi la version 1 de l’API a été utilisée dans ce projet
+
+
+===========================================
+3. Composants créés
+===========================================
+
+3.1 Accueil.jsx : page de présentation 
+- Voir : https://github.com/sumtl/openfood/blob/main/src/assets/accueil.png
+
+3.2 Recherche.jsx : formulaire de recherche + affichage des résultats (cartes)
+
+3.2.1 Résultats limités aux 50 premiers produits retournés par l'API (/cgi/search.pl ne retourne que 50 résultats maximum) 
+- Voir : https://github.com/sumtl/openfood/blob/main/src/assets/recherche_50_resultats_maximum.png
+3.2.2 Seuls les produits avec nom, image et marque sont affichés (filtrage dans le code): afin d’éviter d'afficher des produits incomplets ou peu informatifs 
+- Voir : https://github.com/sumtl/openfood/blob/main/src/assets/recherche_incomplet_exclu.png
+3.2.3 Bouton de réinitialisation : permet de vider le champ de recherche et les résultats
+
+3.3 Produit.jsx : détails d’un produit sélectionné.
+
+3.3.1 Affichage des détails du produit
+- Voir : https://github.com/sumtl/openfood/blob/main/src/assets/produit.png
+3.3.2 Si aucun produit n’a été sélectionné (ex. : accès direct via le menu), un message invite l’utilisateur à revenir à la page de recherche 
+- Voir : https://github.com/sumtl/openfood/blob/main/src/assets/produit_sans_selection.png
+
+3.4 Page404.jsx : page d’erreur pour les routes non reconnues, avec redirection vers l'accueil 
+
+3.5 App.jsx : gestion globale des routes (incluant /recherche, /produit, /produit/:code, etc.)
+
+
+===========================================
+4. Erreurs gérées et tests
+===========================================
+
+4.1 API inaccessible ou problème réseau
+
+4.1.1 Désactivation de la connexion Internet
+- Voir :  https://github.com/sumtl/openfood/blob/main/src/assets/erreur_connexion_internet.png
+4.1.2 Mauvaise URL volontaire : https://world.openfoodfact.org/... (nom de domaine incorrect)
+- Voir : https://github.com/sumtl/openfood/blob/main/src/assets/erreur_api_url_invalide.png
+
+4.2 Paramètre invalide ou non trouvé
+
+4.2.1 Champ de recherche vide
+- Exemple : clic sur "Rechercher" sans rien saisir
+- Voir : https://github.com/sumtl/openfood/blob/main/src/assets/erreur_champ_vide.png
+4.2.2 Terme sans résultat
+- Exemple : recherche d’un mot-clé inexistant dans la base
+- Voir : https://github.com/sumtl/openfood/blob/main/src/assets/erreur_aucun_resultat.png
+
+4.3 Réponse mal formée (non JSON)
+Exemple : appel de l’URL https://httpbin.org/html à la place de l’API
+Voir : https://github.com/sumtl/openfood/blob/main/src/assets/reponse_mal_formee.png
+
+
+===========================================
+5. Différences avec le cours
+===========================================
+
+5.1 En classe :
+- Utilisation de Create React App pour générer le projet
+- Version de react-router-dom : 5.3.0
+- Syntaxe avec <Switch> et component=
+- Lecture des paramètres d’URL avec props.match.params
+- Composants écrits en .js
+
+5.2 Dans mon projet :
+- Utilisation de Vite 
+- Version installée de react-router-dom : 7.6.3
+- Nouvelle syntaxe avec <Routes> et element={<Composant />}
+- Utilisation du hook useParams() pour lire les paramètres d’URL
+- Suppression de props inutilisés dans certains composants 
+- Composants écrits en .jsx (plus adapté pour JSX dans Vite)
+
+
+===========================================
+6. Problème rencontré et solution
+===========================================
+
+- Importation directe du composant Button depuis semantic-ui-react provoquait une page blanche
+- Solution : utiliser <button class="ui button"> à la place
