@@ -16,6 +16,7 @@ function App() {
 
         {/* Menu de Navigation avec les liens vers les differentes pages */}
         <Menu>
+          {/* Lien vers la page d'accueil */}
           <Menu.Item
             as={NavLink}
             to="/"
@@ -25,7 +26,8 @@ function App() {
           >
             Accueil
           </Menu.Item>
-          {/*  */}
+
+          {/* Lien vers la page de recherche  */}
           <Menu.Item
             as={NavLink}
             to="/recherche"
@@ -35,6 +37,8 @@ function App() {
           >
             Recherche
           </Menu.Item>
+
+          {/* Lien vers la page de produit  */}
           <Menu.Item
             as={NavLink}
             to="/produit"
@@ -45,18 +49,20 @@ function App() {
             Produit
           </Menu.Item>
         </Menu>
-        
       </header>
 
       <Routes>
         {/* Route pour la page d'accueil */}
-        <Route path="/" element={<Accueil />} /> 
+        <Route path="/" element={<Accueil />} />
 
         {/* Route pour la page de recherche */}
         <Route path="/recherche" element={<Recherche />} />
 
-        {/* Route pour la page de produit */}
+        {/* Route pour la page de produit sans paramètre : affiche un message d'invitation à utiliser la page de recherche  */}
         <Route path="/produit" element={<Produit />} />
+        
+        {/* Route pour la page de produit avec code en paramètre : affiche les informations du produit */}
+        <Route path="/produit/:code" element={<Produit />} />
 
         {/* Route pour toute URL inconnue */}
         <Route path="*" element={<Page404 />} />

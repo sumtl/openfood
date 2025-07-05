@@ -9,17 +9,18 @@ const Accueil = () => {
     <Container className="welcome-container">
       <h1>Bienvenue sur OpenFood</h1>
       <p>
-        OpenFood est un site qui permet de rechercher des produits alimentaires
-        et d'accéder à leurs informations nutritionnelles grâce à la base de
-        données publique <strong> Open Food Facts</strong>.
+        Explorez les informations nutritionnelles des produits alimentaires
+        grâce à la base de données <strong>Open Food Facts</strong>. Recherchez
+        par nom, marque ou mot-clé via notre interface.
       </p>
       <p>
-        Vous pouvez effectuer une recherche par nom de produit, puis consulter
-        les informations disponibles pour chaque résultat.
+        Grâce à notre moteur de <strong>recherche en texte intégral</strong>,
+        vous pouvez trouver des produits par nom, marque, catégorie, pays ou
+        mot-clé. 
       </p>
       <p>
-        Cliquez sur l'onglet <strong>Recherche</strong> dans le menu pour
-        commencer.
+        Commencez dès maintenant en cliquant sur <strong>Recherche</strong> dans
+        le menu.
       </p>
       <p>
         Ce projet a été réalisé par <strong>Wansu Wang</strong>

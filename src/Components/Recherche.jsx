@@ -45,8 +45,7 @@ const Recherche = () => {
         } else {
           // Cas d'erreur 4 : API inaccessible ou problème réseau（ex:mauvaise API URL, problème de connexion, etc.）
           setError(
-            "Une erreur s'est produite lors de la recherche. Erreur: " +
-            error.message
+            "Une erreur s'est produite lors de la recherche. Erreur: " + error.message
           );
         }
       });
@@ -55,6 +54,13 @@ const Recherche = () => {
   // Fonction pour afficher les résultats de la recherche
   const renderResultats = () => {
     return resultats.map((produit) => {
+      if (
+        !produit.image_url ||
+        !produit.product_name ||
+        !produit.brands 
+      ) {
+        return null;  
+      }
       return (
         <Link key={produit.code} to={`/produit/${produit.code}`}>
           <Card>
@@ -71,7 +77,7 @@ const Recherche = () => {
                 {produit.origins || "Non renseignées"}
               </Card.Meta>
               <Card.Meta>
-                <strong>Stores :</strong> {produit.stores || "Non renseignés"}
+                <strong>Quantité :</strong>{" "}{produit.quantity || "Non renseignée"}
               </Card.Meta>
             </Card.Content>
           </Card>
@@ -84,20 +90,23 @@ const Recherche = () => {
   // Affiche un formulaire de recherche, les résultats et les erreurs éventuelles
   return (
     <Container>
-      <h1>Recherche de produits</h1>
+      <h1>Recherchez un produit alimentaire dans la base Open Food Facts</h1>
 
       <div className="search-form">
-        <Label pointing="right">Nom du produit:</Label>
+        <Label pointing="right">Tapez nom, marque, pays ou mot-clé</Label>
         <Input
           type="text"
           name="nomProduit"
           value={nomProduit}
           onChange={(e) => setNomProduit(e.target.value)}
-          placeholder="Nom du produit"
+          placeholder="Ex. chocolat, Nestlé, France, bio, etc."
+          style={{ minWidth: "350px", width: "30vw", maxWidth: "500px" }}
         />
         <button className="ui primary button" onClick={onClick}>
           Rechercher les produits
         </button>
+
+        {/* Bouton de réinitialisation */}
         <button
           className="ui button"
           onClick={() => {
@@ -116,9 +125,11 @@ const Recherche = () => {
       <h2>Liste des produits:</h2>
 
       {resultats.length > 0 && (
-        <p
-          style={{ fontSize: "1.3em", fontWeight: "600", color: "#2185d0" }}
-        >{`Il y a ${resultats.length} produits trouvés.`}</p>
+        <h3 className="product-count">
+          {resultats.length === 50
+            ? "Plus de 50 produits trouvés. Seuls les 50 premiers avec nom, marque et image sont affichés."
+            : `Il y a ${resultats.length} produits trouvés. Seuls ceux avec nom, marque et image sont affichés.`}
+        </h3>
       )}
 
       <div className="products-grid">

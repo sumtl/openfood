@@ -1,3 +1,4 @@
+/* Page Accueil et menu */
 header {
   margin-bottom: 20px;
 }
@@ -16,13 +17,13 @@ header h1 {
   font-size: 1.5em !important;
 }
 
+/* Page Recherche */
 .search-form {
   display: flex;
   align-items: center;
   gap: 1em;
   margin-bottom: 1em;
 }
-
 
 .products-grid {
   display: grid;
@@ -35,15 +36,38 @@ header h1 {
 .ui.card {
   width: 200px;
   height: 350px;
-
 }
 
 .ui.card .image {
+ 
   height: 150px;
+ 
 }
 
 .ui.card .content {
   word-wrap: break-word;
   overflow-wrap: break-word;
   padding: 0.5em !important;
+}
+
+/* Page produit */
+/* Pour rendre les images fluides */
+.product-images {
+  display: flex;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.product-title {
+  text-align: center;
+}
+
+/* Pour rendre les cards fluides */
+.ui.card.fluid {
+  height: auto !important;
+}
+
+.ui.card.fluid .content {
+  padding: 4rem !important;
 }

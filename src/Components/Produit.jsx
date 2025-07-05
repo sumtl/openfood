@@ -44,6 +44,16 @@ const Produit = () => {
       </div>
     );
   }
+  if (produit.status !== 1) {
+    return (
+      <Container className="welcome-container">
+        <p>
+          Produit non trouvé. <br />
+          Veuillez vérifier le code produit ou utiliser la page de recherche.
+        </p>
+      </Container>
+    );
+  }
 
   return (
     <Container style={{ marginTop: "3rem" }}>

@@ -1,12 +1,42 @@
-# React + Vite
+# Open Food Facts - Projet React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+Cette application permet de rechercher des produits alimentaires via l’API publique **Open Food Facts** et d’en consulter les informations principales : image, marque, ingrédients, origine, score nutritionnel etc.
 
-Currently, two official plugins are available:
+API utilisée :  
+🔗 [https://wiki.openfoodfacts.org/API](https://wiki.openfoodfacts.org/API)  
+(Open Food Facts API — présente dans la liste proposée par l’enseignant)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Lancement du projet
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prérequis
+- [Node.js](https://nodejs.org/) et [npm](https://www.npmjs.com/) installés (Testé avec Node.js v22.15.1, npm v10.9.2)
+- Git (ou décompressez le fichier `.zip`)
+- Accès au dépôt Git : **https://github.com/sumtl/openfood** 
+
+### Installation des dépendances
+```bash
+npm install
+```
+### Démarrage de l'application
+```bash
+npm run dev
+```
+### Accès à l'application
+Ouvrez votre navigateur et accédez à l'URL suivante :
+```
+http://localhost:5173/
+```
+
+---
+## Fonctionnalités
+
+- Recherche de produits par **nom**, **marque**, **pays** ou **mot-clé**
+- Affichage limité aux **50 premiers résultats complets** (avec image, nom et origine renseignés)
+- Présentation des résultats sous forme de cartes avec **nom**, **image**, **marque**, **origine**, **quantité**
+- Clic sur une carte pour accéder à la **page de détails** du produit
+- Affichage des détails : **image**, **marque**, **ingrédients**, **informations nutritionnelles**, **quantité**, **code-barres**, **origine**, **lieu de vente**, **écoscore**, **nutriscore**
+- Gestion des erreurs côté client : champ vide, erreur réseau, produit introuvable etc.
+
